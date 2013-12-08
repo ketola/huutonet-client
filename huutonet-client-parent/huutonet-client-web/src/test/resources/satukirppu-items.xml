@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:somt="http://api.huuto.net/namespace/huuto">
+	<id>http://api.huuto.net/somt/0.9/items/satukirppu</id>
+	<title>items of user: satukirppu</title>
+	<link rel="self"
+		href="http://api.huuto.net/somt/0.9/users/satukirppu/items?seller=satukirppu&amp;page=1" />
+	<entry>
+		<id>http://api.huuto.net/somt/0.9/items/291236849</id>
+		<title><![CDATA[Metsola mekko koko 86/92cm]]></title>
+		<category term="Tyttöjen mekot ja hameet 86-104 cm" label="vaatetus/tyttojen-mekot-ja-hameet-86-104-cm"
+			scheme="http://api.huuto.net/somt/0.9/categories/743" />
+		<author>
+			<name>satukirppu</name>
+			<uri>http://api.huuto.net/somt/0.9/users/satukirppu</uri>
+		</author>
+		<link href="http://api.huuto.net/somt/0.9/items/291236849" />
+		<link rel="image-thumbnail"
+			href="http://kuvat2.huuto.net/0/3e/18453ee21f2d9ec514ea6b5d89cbc-s.jpg" />
+		<updated>2013-11-26T12:54:55+02:00</updated>
+		<somt:price>
+			<somt:currentPrice currency="EUR">12.00
+			</somt:currentPrice>
+		</somt:price>
+	</entry>
+	<entry>
+		<id>http://api.huuto.net/somt/0.9/items/291247952</id>
+		<title><![CDATA[Siisti paketti vauvalle koko 44-56cm]]></title>
+		<category term="Vauvanvaatteet 50-58 cm"
+			label="lastentarvikkeet/lapset---vauvojen-vaatteet-50-58-cm" scheme="http://api.huuto.net/somt/0.9/categories/606" />
+		<author>
+			<name>satukirppu</name>
+			<uri>http://api.huuto.net/somt/0.9/users/satukirppu</uri>
+		</author>
+		<link href="http://api.huuto.net/somt/0.9/items/291247952" />
+		<link rel="image-thumbnail"
+			href="http://kuvat2.huuto.net/2/24/d4b747e14d6bcff4d09e28ae8e321-s.jpg" />
+		<updated>2013-11-26T14:36:50+02:00</updated>
+		<somt:price>
+			<somt:currentPrice currency="EUR">3.00
+			</somt:currentPrice>
+		</somt:price>
+	</entry>
+</feed>

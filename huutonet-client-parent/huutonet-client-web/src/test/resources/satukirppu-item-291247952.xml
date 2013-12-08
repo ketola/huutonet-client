@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:huuto="http://dev.huuto.net/somt"
+	xmlns:somt="http://somt.sanoma.fi/somt">
+	<id>http://api.huuto.net/somt/0.9/items/291247952</id>
+	<title><![CDATA[Siisti paketti vauvalle koko 44-56cm]]></title>
+	<category term="Vauvanvaatteet 50-58 cm"
+		label="lastentarvikkeet/lapset---vauvojen-vaatteet-50-58-cm" scheme="http://api.huuto.net/somt/0.9/categories/606" />
+	<author>
+		<name>satukirppu</name>
+		<uri>http://api.huuto.net/somt/0.9/users/satukirppu</uri>
+	</author>
+	<link rel="self" href="http://api.huuto.net/somt/0.9/items/291247952" />
+	<link rel="images" href="http://api.huuto.net/somt/0.9/items/291247952/images" />
+	<link rel="bids" href="http://api.huuto.net/somt/0.9/items/291247952/bids" />
+	<link rel="alternative"
+		href="http://www.huuto.net/kohteet/siisti-paketti-vauvalle-koko-44-56cm/291247952?ref=api" />
+	<link rel="image-thumbnail"
+		href="http://kuvat2.huuto.net/2/24/d4b747e14d6bcff4d09e28ae8e321-s.jpg" />
+	<link rel="image-normal"
+		href="http://kuvat2.huuto.net/2/24/d4b747e14d6bcff4d09e28ae8e321-m.jpg" />
+	<link rel="image-original"
+		href="http://kuvat2.huuto.net/2/24/d4b747e14d6bcff4d09e28ae8e321-orig.jpg" />
+	<somt:itemStatus>open</somt:itemStatus>
+	<content type="text/html"><![CDATA[<p>Siistikuntoisia/uudenveroisia vaatteita vastasyntyneelle pikkuiselle koossa 44-56cm. Tarkemmat kuvaukset kuvien alla.</p>
+
+<p><a href="http://aijaa.com/9qZ2aB" target="_blank"><img src="http://i8.aijaa.com/t/00247/12861587.t.jpg"></a></p>
+
+<p>Kahdet haalarihousut kokoa 56cm. Valkoiset vakosamettihousut ovat Nameit merkkiset ne ovat hyvin siistit ja ehjät vain yksi ihan haalea tahra on yläreunassa nappien välissä. Toiset haalarit ovat velouria ne ovat Lindexin. Nämä ovat ehjät ja tahrattomat.</p>
+
+<p><a href="http://aijaa.com/GrMUCH" target="_blank"><img src="http://i4.aijaa.com/t/00346/12861589.t.jpg"></a></p>
+
+<p>Lindexin velourhousut ja paita, molemmat kokoa 56cm. Molemmat ovat ehjät ja tahrattomat ja lähes uudenveroiset.</p>
+
+<p><a href="http://aijaa.com/ZzhiHp" target="_blank"><img src="http://i6.aijaa.com/t/00655/12861590.t.jpg"></a></p>
+
+<p>Kaksi ehjää  ja hyvin siistiä yöpukua. Sammakkopuku on kooltaan 44cm ja on Kappahlin, siinä on pieni tahra polvessa. Harmaa puku on Flexi merkkinen ja koko on 2m. Tämä puku on tahraton.</p>
+
+<p><a href="http://aijaa.com/ezodtl" target="_blank"><img src="http://i8.aijaa.com/t/00877/12861591.t.jpg"></a></p>
+
+<p>Kahdet H&M merkkiset puuvillahousut koko molemmissa 56cm. Nämä ovat ehjät ja tahrattomat.</p>
+
+<p>Lisäksi pääkuvassa näkyvät Pippi merkkiset puolipotkuhousut kokoa 50cm. Ehjät ja tahrattomat.</p>]]></content>
+	<summary><![CDATA[Siistikuntoisia/uudenveroisia vaatteita vastasyntyneelle pikkuiselle koossa 44-56cm. Tarkemmat kuvaukset kuvien alla.
+
+
+
+Kahdet haalarihousut kokoa 56c]]></summary>
+	<updated>2013-11-26T14:36:50+02:00</updated>
+	<somt:intention type="AUCTION" />
+	<somt:expirationTime>2013-12-08T14:36:50+02:00</somt:expirationTime>
+	<somt:condition type="GOOD" />
+	<somt:location>
+		<somt:city><![CDATA[Vantaa]]></somt:city>
+	</somt:location>
+	<somt:price>
+		<somt:currentPrice currency="EUR">3.00</somt:currentPrice>
+		<huuto:startingPrice currency="EUR">3.00</huuto:startingPrice>
+		<huuto:minimumIncrease currency="EUR">0.50</huuto:minimumIncrease>
+		<somt:taxPercentage>24.00</somt:taxPercentage>
+	</somt:price>
+	<somt:quantity>1</somt:quantity>
+	<somt:buyerRequirements>
+		<huuto:minimiumFeedback>0</huuto:minimiumFeedback>
+		<huuto:verificationRequired>false</huuto:verificationRequired>
+	</somt:buyerRequirements>
+	<somt:deliveryMethods>
+		<somt:deliveryMethod type="other" cost="6.00"
+			currency="EUR">
+			<somt:description><![CDATA[Paketti postitetaan kun maksu näkyy tilillä.Maksua odotetaan viikko kaupan sulkeutumisesta. Paketin voi noutaa Satukirpusta Vantaan Tikkurilasta ja maksaa siellä. www.satukirppu.fi]]></somt:description>
+		</somt:deliveryMethod>
+	</somt:deliveryMethods>
+	<somt:paymentMethods>
+		<somt:paymentMethod type="ACCOUNT" />
+		<somt:paymentMethod type="CASH" />
+	</somt:paymentMethods>
+</entry>

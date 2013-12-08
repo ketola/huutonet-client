@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:huuto="http://dev.huuto.net/somt"
+	xmlns:somt="http://somt.sanoma.fi/somt">
+	<id>http://api.huuto.net/somt/0.9/items/291236849</id>
+	<title><![CDATA[Metsola mekko koko 86/92cm]]></title>
+	<category term="Tytt&#xF6;jen mekot ja hameet 86-104 cm"
+		label="vaatetus/tyttojen-mekot-ja-hameet-86-104-cm" scheme="http://api.huuto.net/somt/0.9/categories/743" />
+	<author>
+		<name>satukirppu</name>
+		<uri>http://api.huuto.net/somt/0.9/users/satukirppu</uri>
+	</author>
+	<link rel="self" href="http://api.huuto.net/somt/0.9/items/291236849" />
+	<link rel="images" href="http://api.huuto.net/somt/0.9/items/291236849/images" />
+	<link rel="bids" href="http://api.huuto.net/somt/0.9/items/291236849/bids" />
+	<link rel="alternative"
+		href="http://www.huuto.net/kohteet/metsola-mekko-koko-86_92cm/291236849?ref=api" />
+	<link rel="image-thumbnail"
+		href="http://kuvat2.huuto.net/0/3e/18453ee21f2d9ec514ea6b5d89cbc-s.jpg" />
+	<link rel="image-normal"
+		href="http://kuvat2.huuto.net/0/3e/18453ee21f2d9ec514ea6b5d89cbc-m.jpg" />
+	<link rel="image-original"
+		href="http://kuvat2.huuto.net/0/3e/18453ee21f2d9ec514ea6b5d89cbc-orig.jpg" />
+	<somt:itemStatus>open</somt:itemStatus>
+	<content type="text/html"><![CDATA[<p>Siistissä kunnossa oleva Metsolan froteinen mekko koko 86/92cm. Mekko on ehjä ja tahraton ja frotee on pehmeää. Pohjaväri on tummanruskea.</p>]]></content>
+	<summary><![CDATA[Siistissä kunnossa oleva Metsolan froteinen mekko koko 86/92cm. Mekko on ehjä ja tahraton ja frotee on pehmeää. Pohjaväri on tummanruskea.]]></summary>
+	<updated>2013-11-26T12:54:55+02:00</updated>
+	<somt:intention type="AUCTION" />
+	<somt:expirationTime>2013-12-08T12:54:55+02:00</somt:expirationTime>
+	<somt:condition type="GOOD" />
+	<somt:location>
+		<somt:city><![CDATA[Vantaa]]></somt:city>
+	</somt:location>
+	<somt:price>
+		<somt:currentPrice currency="EUR">12.00</somt:currentPrice>
+		<huuto:startingPrice currency="EUR">10.00</huuto:startingPrice>
+		<huuto:minimumIncrease currency="EUR">1.00</huuto:minimumIncrease>
+		<somt:taxPercentage>24.00</somt:taxPercentage>
+	</somt:price>
+	<somt:quantity>1</somt:quantity>
+	<somt:buyerRequirements>
+		<huuto:minimiumFeedback>0</huuto:minimiumFeedback>
+		<huuto:verificationRequired>false</huuto:verificationRequired>
+	</somt:buyerRequirements>
+	<somt:deliveryMethods>
+		<somt:deliveryMethod type="Posti" cost="2.00"
+			currency="EUR" />
+		<somt:deliveryMethod type="nouto" cost="2.00"
+			currency="EUR" />
+		<somt:deliveryMethod type="other" cost="2.00"
+			currency="EUR">
+			<somt:description><![CDATA[Paketti postitetaan kun maksu näkyy tilillä. Maksua odotetaan viikko kaupan sulkeutumisesta. Paketin voi noutaa Satukirpusta Van]]></somt:description>
+		</somt:deliveryMethod>
+	</somt:deliveryMethods>
+	<somt:paymentMethods>
+		<somt:paymentMethod type="ACCOUNT" />
+		<somt:paymentMethod type="CASH" />
+	</somt:paymentMethods>
+</entry>

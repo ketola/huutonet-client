@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:somt="http://somt.sanoma.fi/somt">
+	<id>http://api.huuto.net/somt/0.9/users/satukirppu</id>
+	<title><![CDATA[satukirppu]]></title>
+	<author>
+		<name>satukirppu</name>
+		<uri>http://api.huuto.net/somt/0.9/users/satukirppu</uri>
+	</author>
+	<somt:userType type="company" />
+	<link rel="self" href="http://api.huuto.net/somt/0.9/users/satukirppu" />
+	<link rel="feedbacks"
+		href="http://api.huuto.net/somt/0.9/users/satukirppu/feedbacks" />
+	<link rel="open-items" href="http://api.huuto.net/somt/0.9/users/satukirppu/items" />
+	<link rel="closed-items"
+		href="http://api.huuto.net/somt/0.9/users/satukirppu/closed-items" />
+	<link rel="alternative" href="http://www.huuto.net/kayttaja/2202363" />
+	<content type="text/html"><![CDATA[Lastenvaatteiden Second-Hand liike Vantaan Tikkurilassa
+Huudon voi maksaa tilille:
+FI85 5722 4120 1587 93]]></content>
+	<updated>2013-12-07T16:30:24+02:00</updated>
+</entry>
