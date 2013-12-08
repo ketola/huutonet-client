@@ -20,6 +20,7 @@ public class HuutoNetServiceImpl
     implements HuutoNetService
 {
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX";
+
     public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/users/satukirppu/items";
 
     public List<HuutoNetItem> fetchHuutoNetItems()
@@ -53,12 +54,11 @@ public class HuutoNetServiceImpl
                 {
                     try
                     {
-                        item.setCloseDate( DateUtils.parseDate( element.getText(),
-                                                                new String[] { DATE_FORMAT } ) );
+                        item.setCloseDate( DateUtils.parseDate( element.getText(), new String[] { DATE_FORMAT } ) );
                     }
                     catch ( ParseException e )
                     {
-                        throw new RuntimeException( e );
+                        throw new RuntimeException( "Date:" + element.getText(), e );
                     }
                 }
 

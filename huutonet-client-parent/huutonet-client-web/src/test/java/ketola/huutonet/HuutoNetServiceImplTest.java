@@ -1,6 +1,8 @@
 package ketola.huutonet;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -14,7 +16,6 @@ import org.apache.abdera.protocol.client.AbderaClient;
 import org.apache.abdera.protocol.client.ClientResponse;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class HuutoNetServiceImplTest
 {
@@ -50,17 +51,16 @@ public class HuutoNetServiceImplTest
     {
         Abdera abdera = Abdera.getInstance();
 
-        final ClientResponse itemsResponse = Mockito.mock( ClientResponse.class );
-        Mockito.when( itemsResponse.getDocument() )
+        final ClientResponse itemsResponse = mock( ClientResponse.class );
+        when( itemsResponse.getDocument() )
             .thenReturn( abdera.getParser().parse( this.getClass().getResourceAsStream( "/satukirppu-items.xml" ) ) );
 
-        final ClientResponse items1Response = Mockito.mock( ClientResponse.class );
-        Mockito.when( items1Response.getDocument() )
+        final ClientResponse items1Response = mock( ClientResponse.class );
+        when( items1Response.getDocument() )
             .thenReturn( abdera.getParser().parse( this.getClass()
                                                        .getResourceAsStream( "/satukirppu-item-291236849.xml" ) ) );
-
-        final ClientResponse items2Response = Mockito.mock( ClientResponse.class );
-        Mockito.when( items2Response.getDocument() )
+        final ClientResponse items2Response = mock( ClientResponse.class );
+        when( items2Response.getDocument() )
             .thenReturn( abdera.getParser().parse( this.getClass()
                                                        .getResourceAsStream( "/satukirppu-item-291247952.xml" ) ) );
 
