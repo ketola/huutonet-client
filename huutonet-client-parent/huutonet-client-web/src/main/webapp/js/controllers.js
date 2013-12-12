@@ -2,10 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
-
-  }])
-  .controller('MyCtrl2', [function() {
-
+angular.module('huutoNetApp.controllers', []).
+  controller('HuutoNetItemsCtrl', ['$scope','HuutoNet', function($scope, HuutoNet) {
+	  $scope.items = HuutoNet.query();
   }]);

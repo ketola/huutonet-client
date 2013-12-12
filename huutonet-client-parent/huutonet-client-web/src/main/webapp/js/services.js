@@ -1,9 +1,12 @@
 'use strict';
+var huutoNetServices = angular.module('huutoNetApp.services', [ 'ngResource' ]);
 
-/* Services */
-
-
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+huutoNetServices.factory('HuutoNet', [ '$resource', function($resource) {
+	//return $resource('/example-response.json', {}, {
+		return $resource('/service/items', {}, {	
+		query : {
+			method : 'GET',
+			isArray : true
+		}
+	});
+} ]);
