@@ -3,9 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>huutonet</groupId>
 	<artifactId>huutonet</artifactId>
-	<packaging>war</packaging>
+	<packaging>pom</packaging>
 	<version>1.0</version>
 	<name>huutonet</name>
+	<modules>
+		<module>huutonet-client-parent</module>
+	</modules>
 	<repositories>
 		<repository>
 			<id>eap</id>
@@ -49,6 +52,7 @@
 	</dependencies>
 	<profiles>
 		<profile>
+			<id>openshift</id>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
 				invoking mvn. -->
 			<!-- Use this profile for any OpenShift specific customization your app 
@@ -56,20 +60,6 @@
 			<!-- By default that is to put the resulting archive into the 'webapps' 
 				folder. -->
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-			<id>openshift</id>
-			<build>
-				<finalName>huutonet</finalName>
-				<plugins>
-					<plugin>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>2.1.1</version>
-						<configuration>
-							<outputDirectory>webapps</outputDirectory>
-							<warName>ROOT</warName>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
 	</profiles>
 </project>

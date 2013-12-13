@@ -6,6 +6,11 @@
 	<artifactId>huutonet-client-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<parent>
+		<groupId>huutonet</groupId>
+		<artifactId>huutonet</artifactId>
+		<version>1.0</version>
+	</parent>
 	<modules>
 		<module>huutonet-client-web</module>
 	</modules>

@@ -19,7 +19,7 @@ import org.apache.commons.lang3.time.DateUtils;
 public class HuutoNetServiceImpl
     implements HuutoNetService
 {
-    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX";
+    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
 
     public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/users/satukirppu/items";
 
@@ -54,7 +54,8 @@ public class HuutoNetServiceImpl
                 {
                     try
                     {
-                        item.setCloseDate( DateUtils.parseDate( element.getText(), new String[] { DATE_FORMAT } ) );
+                        item.setCloseDate( DateUtils.parseDate( element.getText().replaceAll( ":(\\d\\d)$", "$1" ),
+                                                                new String[] { DATE_FORMAT } ) );
                     }
                     catch ( ParseException e )
                     {
