@@ -31,10 +31,10 @@ public class HuutoNetServiceImplTest
 
         HuutoNetItem item1 = items.get( 0 );
 
-        assertEquals( "Tyttöjen mekot ja hameet 86-104 cm", item1.getCategory() );
+        assertEquals( "TyttÃ¶jen mekot ja hameet 86-104 cm", item1.getCategory() );
         assertEquals( DateUtils.parseDate( "2013-12-08 12:54:55", new String[] { "yyyy-MM-dd HH:mm:ss" } ),
                       item1.getCloseDate() );
-        assertEquals( "Siistissä kunnossa oleva Metsolan froteinen mekko koko 86/92cm. Mekko on ehjä ja tahraton ja frotee on pehmeää. Pohjaväri on tummanruskea.",
+        assertEquals( "SiistissÃ¤ kunnossa oleva Metsolan froteinen mekko koko 86/92cm. Mekko on ehjÃ¤ ja tahraton ja frotee on pehmeï¿½ï¿½. Pohjavï¿½ri on tummanruskea.",
                       item1.getDescription() );
         assertEquals( "http://www.huuto.net/kohteet/metsola-mekko-koko-86_92cm/291236849?ref=api",
                       item1.getHuutoNetUrl() );
