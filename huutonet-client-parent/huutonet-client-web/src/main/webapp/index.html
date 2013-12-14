@@ -92,7 +92,7 @@
         }*/
         @font-face {
             font-family: 'Helvetica Neue';
-            src: url('http://system.themeple.co/wp-content/themes/system/css/Helvetica_Neue.ttf') format('truetype');
+            src: url('http://satukirppu.fi/wp-content/themes/system/css/Helvetica_Neue.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
 
@@ -100,7 +100,7 @@
 
         @font-face {
             font-family: 'Helvetica Neue';
-            src: url('http://system.themeple.co/wp-content/themes/system/css/Helvetica_Neue_Bold.ttf') format('truetype');
+            src: url('http://satukirppu.fi/wp-content/themes/system/css/Helvetica_Neue_Bold.ttf') format('truetype');
             font-weight: 600;
             font-style: normal;
 
@@ -109,10 +109,10 @@
         </style>
 
 <link rel='stylesheet' id='style-css'
-	href='http://system.themeple.co/wp-content/themes/system/style.css?ver=3.5.2'
+	href='http://satukirppu.fi/wp-content/themes/system/style.css?ver=3.5.2'
 	type='text/css' media='all' />
 	
-<link rel='stylesheet' id='bootstrap-responsive-css'  href='http://system.themeple.co/wp-content/themes/system/css/bootstrap-responsive.css?ver=3.5.2' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-responsive-css'  href='http://satukirppu.fi/wp-content/themes/system/css/bootstrap-responsive.css?ver=3.5.2' type='text/css' media='all' />
 
 <style type="text/css">
 #portfolio-preview-items .portfolio-item.v1 img{opacity:1;}
@@ -124,8 +124,8 @@
 <body class="page page-id-28 page-template-default header_1">
 	<section id="content" class="content_portfolio layout-fullsize">
 		<div class="container" ng-view>
-			<div class="row-fluid">
-				<!-- Portfolio Filter -->
+			<!-- <div class="row-fluid">
+				
 				<nav id="portfolio-filter" class="span12">
 					<ul class="">
 						<li class="active all"><a href="#" data-filter="*">View
@@ -140,23 +140,24 @@
 								Development</a><span></span></li>
 					</ul>
 				</nav>
-			</div>
+			</div>  -->
 			<div class="row-fluid" ng-controller="HuutoNetItemsCtrl">
 				<section id="portfolio-preview-items" class="three-cols span12">
 
 					<div class="row filterable">
 						<!-- item -->
-						<a href="{{e.huutoNetUrl}}">
+						<a target="_blank" href="{{e.huutoNetUrl}}">
 						<div class="portfolio-item illustrations  v1" data-id="195" ng-repeat="e in items" style="">
 							<img 
 								src="{{e.imageNormalUrl}}"
 								alt="">
 							<div class="shape3"></div>
-							<div class="project">
+							<div class="project" style="height: 95px;">
 								<h6>
-									<a href="{{e.huutoNetUrl}}">{{e.title}}</a>
+									<a target="_blank" href="{{e.huutoNetUrl}}">{{e.title}}</a>
 								</h6>
-								<span class="desc">{{e.priceCurrent}} €</span>
+								<span class="desc">Sulkeutuu: {{e.closeDate | date:'d.M.yyyy HH:mm'}}</span>
+								<span class="desc">Hinta nyt: {{e.priceCurrent}} €</span>
 							</div>
 						</div>
 						</a>
