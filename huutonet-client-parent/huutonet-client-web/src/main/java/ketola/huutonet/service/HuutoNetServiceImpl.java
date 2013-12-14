@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ketola.huutonet.domain.HuutoNetItem;
+import ketola.huutonet.service.httpclient.OSProtocolSocketFactory;
 
 import org.apache.abdera.Abdera;
 import org.apache.abdera.model.Document;
@@ -14,6 +15,7 @@ import org.apache.abdera.model.Entry;
 import org.apache.abdera.model.Feed;
 import org.apache.abdera.protocol.client.AbderaClient;
 import org.apache.abdera.protocol.client.ClientResponse;
+import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.lang3.time.DateUtils;
 
 public class HuutoNetServiceImpl
@@ -22,6 +24,12 @@ public class HuutoNetServiceImpl
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
 
     public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/users/satukirppu/items";
+
+    public HuutoNetServiceImpl()
+    {
+        // required to use http client on OpenShift
+        Protocol.registerProtocol( "http", new Protocol( "http", new OSProtocolSocketFactory(), 80 ) );
+    }
 
     public List<HuutoNetItem> fetchHuutoNetItems()
     {
