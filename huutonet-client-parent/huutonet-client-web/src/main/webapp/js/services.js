@@ -1,12 +1,9 @@
 'use strict';
-var huutoNetServices = angular.module('huutoNetApp.services', [ 'ngResource' ]);
+var huutoNetServices = angular.module('huutoNetApp.services', []);
 
-huutoNetServices.factory('HuutoNet', [ '$resource', function($resource) {
+huutoNetServices.factory('HuutoNet', [ '$http', function($http) {
 	//return $resource('/example-response.json', {}, {
-		return $resource('/service/items', {}, {	
-		query : {
-			method : 'GET',
-			isArray : true
-		}
-	});
+	return $http.jsonp('/service/items?callback=JSON_CALLBACK');;
+	
+		
 } ]);
