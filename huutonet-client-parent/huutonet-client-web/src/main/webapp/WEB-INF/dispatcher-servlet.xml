@@ -10,7 +10,7 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 	<context:component-scan base-package="ketola.huutonet.web" />
 	<mvc:annotation-driven />
 	
-	<bean id="huutoNetService" class="ketola.huutonet.service.HuutoNetServiceCacheImpl">
+	<bean id="huutoNetService" class="ketola.huutonet.service.HuutoNetServiceCacheImpl" init-method="init">
 		<property name="wrappedHuutoNetService"><bean class="ketola.huutonet.service.HuutoNetServiceImpl"></bean></property>
 	</bean>
 
