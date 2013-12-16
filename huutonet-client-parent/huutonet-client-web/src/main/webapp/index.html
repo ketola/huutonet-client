@@ -59,6 +59,15 @@
 	.jumbotron {
 		border-bottom: 0;
 	}
+	
+	div.col-sm-6 {
+		padding-bottom: 20px; 
+		height: 290px
+	}
+	.auction-img {
+		max-width: 220px;
+		height: auto;
+	}
 }
 </style>
   </head>
@@ -74,8 +83,8 @@
       </div>
 
       <div class="row marketing" ng-controller="HuutoNetItemsCtrl">
-        <div class="col-lg-6" ng-repeat="e in items" style="text-align: center; ">
-          <a target="_blank" href="{{e.huutoNetUrl}}"><img 
+        <div class="col-sm-6" ng-repeat="e in items" style="text-align: center; ">
+          <a target="_blank" href="{{e.huutoNetUrl}}"><img class="auction-img"
 			ng-src="{{e.imageNormalUrl}}"
 			alt=""></a>
           <h4><a target="_blank" href="{{e.huutoNetUrl}}">{{e.title}}</a></h4>
