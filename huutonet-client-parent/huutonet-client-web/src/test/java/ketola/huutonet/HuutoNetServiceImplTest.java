@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import ketola.huutonet.domain.HuutoNetItem;
+import ketola.huutonet.domain.HuutoNetItem.Type;
 import ketola.huutonet.service.HuutoNetServiceImpl;
 
 import org.apache.abdera.Abdera;
@@ -45,6 +46,7 @@ public class HuutoNetServiceImplTest
         assertEquals( new BigDecimal( "12.00" ), item1.getPriceCurrent() );
         assertEquals( new BigDecimal( "10.00" ), item1.getPriceStart() );
         assertEquals( "Metsola mekko koko 86/92cm", item1.getTitle() );
+        assertEquals( Type.AUCTION, item1.getType() );
     }
 
     private HuutoNetServiceImpl HuutoNetServiceImplWithMockAbderaClient()

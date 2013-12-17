@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ketola.huutonet.domain.HuutoNetItem;
+import ketola.huutonet.domain.HuutoNetItem.Type;
 import ketola.huutonet.service.httpclient.OSProtocolSocketFactory;
 
 import org.apache.abdera.Abdera;
@@ -71,7 +72,7 @@ public class HuutoNetServiceImpl
                     }
                 }
 
-                if ( element.getQName().getLocalPart().equals( "price" ) )
+                else if ( element.getQName().getLocalPart().equals( "price" ) )
                 {
                     for ( Element priceElement : element.getElements() )
                     {
@@ -84,6 +85,18 @@ public class HuutoNetServiceImpl
                         {
                             item.setPriceStart( new BigDecimal( priceElement.getText() ) );
                         }
+                    }
+                }
+
+                else if ( element.getQName().getLocalPart().equals( "intention" ) )
+                {
+                    if ( element.getAttributeValue( "type" ).equals( "AUCTION" ) )
+                    {
+                        item.setType( Type.AUCTION );
+                    }
+                    else if ( element.getAttributeValue( "type" ).equals( "BUY_NOW" ) )
+                    {
+                        item.setType( Type.BUY_NOW );
                     }
                 }
 

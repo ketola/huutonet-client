@@ -12,6 +12,12 @@ public class HuutoNetItem
 
     private static final long serialVersionUID = 1L;
 
+    public enum Type {
+        AUCTION, BUY_NOW
+    };
+
+    private Type type;
+
     private Date closeDate;
 
     private String title;
@@ -31,6 +37,16 @@ public class HuutoNetItem
     private BigDecimal priceCurrent;
 
     private BigDecimal priceStart;
+
+    public Type getType()
+    {
+        return type;
+    }
+
+    public void setType( Type type )
+    {
+        this.type = type;
+    }
 
     public Date getCloseDate()
     {
