@@ -104,6 +104,7 @@ public class HuutoNetServiceImpl
             items.add( item );
         }
 
+        abderaClient.getCache().clear();
         return items;
     }
 
