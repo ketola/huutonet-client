@@ -24,7 +24,7 @@ public class HuutoNetServiceImpl
 {
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
 
-    public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/users/satukirppu/items";
+    public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/items?seller=satukirppu&num=50";
 
     public HuutoNetServiceImpl()
     {
