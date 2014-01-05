@@ -15,6 +15,8 @@ public class HuutoNetServiceCacheImpl
 
     private HuutoNetService wrappedHuutoNetService;
 
+    private Timer timer;
+
     public HuutoNetServiceCacheImpl()
     {
 
@@ -22,28 +24,21 @@ public class HuutoNetServiceCacheImpl
 
     public void init()
     {
-        createTimer();
+        // populate cache and schedule an update timer
+        this.cache = wrappedHuutoNetService.fetchHuutoNetItems();
+        this.timer = createTimer();
     }
 
     private Timer createTimer()
     {
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate( new TimerTask()
-        {
-
-            @Override
-            public void run()
-            {
-                cache = wrappedHuutoNetService.fetchHuutoNetItems();
-            }
-        }, 1000, FIVE_MINUTES );
+        timer.schedule( new UpdateTask(), FIVE_MINUTES );
         return timer;
     }
 
     @Override
     public List<HuutoNetItem> fetchHuutoNetItems()
     {
-
         return cache;
     }
 
@@ -55,5 +50,20 @@ public class HuutoNetServiceCacheImpl
     public List<HuutoNetItem> getCache()
     {
         return cache;
+    }
+
+    private class UpdateTask
+        extends TimerTask
+    {
+
+        @Override
+        public void run()
+        {
+            // the timer seems to stop working after a while on openshift, 
+            // i changed the implementation to create a new timer (new thread) each time to work around
+            HuutoNetServiceCacheImpl.this.timer.cancel();
+            HuutoNetServiceCacheImpl.this.cache = wrappedHuutoNetService.fetchHuutoNetItems();
+            HuutoNetServiceCacheImpl.this.timer = createTimer();
+        }
     }
 }
