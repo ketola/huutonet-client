@@ -1,5 +1,6 @@
 package ketola.huutonet.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,6 +14,8 @@ public class HuutoNetServiceCacheImpl
 
     private List<HuutoNetItem> cache;
 
+    private Date cacheTimestamp;
+
     private HuutoNetService wrappedHuutoNetService;
 
     private Timer timer;
@@ -24,8 +27,13 @@ public class HuutoNetServiceCacheImpl
 
     public void init()
     {
-        // populate cache and schedule an update timer
+        refreshCacheAndStartTimer();
+    }
+
+    private void refreshCacheAndStartTimer()
+    {
         this.cache = wrappedHuutoNetService.fetchHuutoNetItems();
+        this.cacheTimestamp = new Date();
         this.timer = createTimer();
     }
 
@@ -39,7 +47,19 @@ public class HuutoNetServiceCacheImpl
     @Override
     public List<HuutoNetItem> fetchHuutoNetItems()
     {
+        // cache updating timer stops working at some point on openshift
+        // this is here to restart it if cache has not been refreshed
+        if ( getCacheAge() > FIVE_MINUTES )
+        {
+            refreshCacheAndStartTimer();
+        }
+
         return cache;
+    }
+
+    private long getCacheAge()
+    {
+        return new Date().getTime() - cacheTimestamp.getTime();
     }
 
     public void setWrappedHuutoNetService( HuutoNetService wrappedHuutoNetService )
