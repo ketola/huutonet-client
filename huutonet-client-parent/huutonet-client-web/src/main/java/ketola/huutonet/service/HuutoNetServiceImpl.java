@@ -42,9 +42,62 @@ public class HuutoNetServiceImpl
         Document<Feed> doc = response.getDocument();
         List<Entry> entries = doc.getRoot().getEntries();
 
+        List<ItemReader> itemReaders = new ArrayList<HuutoNetServiceImpl.ItemReader>();
+
+        // create an item reader thread for each item
         for ( Entry entry : entries )
         {
-            ClientResponse entryResponse = abderaClient.get( entry.getId().toString() );
+            ItemReader itemReader = new ItemReader( entry, abderaClient );
+            itemReaders.add( itemReader );
+            itemReader.run();
+        }
+
+        // wait for all threads to finish
+        for ( ItemReader itemReader : itemReaders )
+        {
+            try
+            {
+                itemReader.join();
+            }
+            catch ( InterruptedException e )
+            {
+                e.printStackTrace();
+            }
+        }
+
+        // get the items that were read from each reader
+        for ( ItemReader itemReader : itemReaders )
+        {
+            items.add( itemReader.item );
+        }
+
+        return items;
+    }
+
+    protected AbderaClient abderaClient()
+    {
+        return new AbderaClient( Abdera.getInstance() );
+    }
+
+    private class ItemReader
+        extends Thread
+    {
+        private Entry entry;
+
+        private AbderaClient client;
+
+        private HuutoNetItem item;
+
+        public ItemReader( Entry entry, AbderaClient client )
+        {
+            this.entry = entry;
+            this.client = client;
+        }
+
+        @Override
+        public void run()
+        {
+            ClientResponse entryResponse = client.get( entry.getId().toString() );
             Entry itemEntry = (Entry) entryResponse.getDocument().getRoot();
 
             HuutoNetItem item = new HuutoNetItem();
@@ -101,16 +154,10 @@ public class HuutoNetServiceImpl
                 }
 
             }
-            items.add( item );
+
+            this.item = item;
         }
 
-        abderaClient.getCache().clear();
-        return items;
-    }
-
-    protected AbderaClient abderaClient()
-    {
-        return new AbderaClient( Abdera.getInstance() );
     }
 
 }

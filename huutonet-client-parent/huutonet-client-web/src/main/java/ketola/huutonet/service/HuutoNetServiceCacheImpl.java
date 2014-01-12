@@ -2,8 +2,6 @@ package ketola.huutonet.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import ketola.huutonet.domain.HuutoNetItem;
 
@@ -18,8 +16,6 @@ public class HuutoNetServiceCacheImpl
 
     private HuutoNetService wrappedHuutoNetService;
 
-    private Timer timer;
-
     public HuutoNetServiceCacheImpl()
     {
 
@@ -27,21 +23,13 @@ public class HuutoNetServiceCacheImpl
 
     public void init()
     {
-        refreshCacheAndStartTimer();
+
     }
 
-    private void refreshCacheAndStartTimer()
+    private void refreshCache()
     {
         this.cache = wrappedHuutoNetService.fetchHuutoNetItems();
         this.cacheTimestamp = new Date();
-        this.timer = createTimer();
-    }
-
-    private Timer createTimer()
-    {
-        Timer timer = new Timer();
-        timer.schedule( new UpdateTask(), FIVE_MINUTES );
-        return timer;
     }
 
     @Override
@@ -49,9 +37,9 @@ public class HuutoNetServiceCacheImpl
     {
         // cache updating timer stops working at some point on openshift
         // this is here to restart it if cache has not been refreshed
-        if ( getCacheAge() > FIVE_MINUTES )
+        if ( cacheTimestamp == null || getCacheAge() > FIVE_MINUTES )
         {
-            refreshCacheAndStartTimer();
+            refreshCache();
         }
 
         return cache;
@@ -70,20 +58,5 @@ public class HuutoNetServiceCacheImpl
     public List<HuutoNetItem> getCache()
     {
         return cache;
-    }
-
-    private class UpdateTask
-        extends TimerTask
-    {
-
-        @Override
-        public void run()
-        {
-            // the timer seems to stop working after a while on openshift, 
-            // i changed the implementation to create a new timer (new thread) each time to work around
-            HuutoNetServiceCacheImpl.this.timer.cancel();
-            HuutoNetServiceCacheImpl.this.cache = wrappedHuutoNetService.fetchHuutoNetItems();
-            HuutoNetServiceCacheImpl.this.timer = createTimer();
-        }
     }
 }
