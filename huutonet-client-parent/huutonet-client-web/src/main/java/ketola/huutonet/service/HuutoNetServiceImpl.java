@@ -17,6 +17,7 @@ import org.apache.abdera.model.Feed;
 import org.apache.abdera.protocol.client.AbderaClient;
 import org.apache.abdera.protocol.client.ClientResponse;
 import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 public class HuutoNetServiceImpl
@@ -26,10 +27,44 @@ public class HuutoNetServiceImpl
 
     public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/items?seller=satukirppu&num=50";
 
+    public static final String URL_ITEM = "http://api.huuto.net/somt/0.9/items/%s";
+
     public HuutoNetServiceImpl()
     {
         // required to use http client on OpenShift
         Protocol.registerProtocol( "http", new Protocol( "http", new OSProtocolSocketFactory(), 80 ) );
+    }
+
+    @Override
+    public List<String> fetchItemIds()
+    {
+        List<String> itemIds = new ArrayList<String>();
+
+        AbderaClient abderaClient = abderaClient();
+
+        ClientResponse response = abderaClient.get( URL_ITEMS );
+        Document<Feed> doc = response.getDocument();
+        List<Entry> entries = doc.getRoot().getEntries();
+
+        for ( Entry entry : entries )
+        {
+            String id = StringUtils.substringAfterLast( entry.getId().toString(), "/" );
+            itemIds.add( id );
+        }
+
+        return itemIds;
+    }
+
+    @Override
+    public HuutoNetItem fetchItem( String id )
+    {
+        AbderaClient abderaClient = abderaClient();
+
+        ClientResponse entryResponse = abderaClient.get( String.format( URL_ITEM, id ) );
+
+        Entry itemEntry = (Entry) entryResponse.getDocument().getRoot();
+
+        return toHuutoNetItem( itemEntry );
     }
 
     public List<HuutoNetItem> fetchHuutoNetItems()
@@ -99,65 +134,67 @@ public class HuutoNetServiceImpl
         {
             ClientResponse entryResponse = client.get( entry.getId().toString() );
             Entry itemEntry = (Entry) entryResponse.getDocument().getRoot();
-
-            HuutoNetItem item = new HuutoNetItem();
-
-            item.setTitle( itemEntry.getTitle() );
-            item.setCategory( itemEntry.getCategories().get( 0 ).getTerm() );
-            item.setDescription( itemEntry.getSummary() );
-            item.setHuutoNetUrl( itemEntry.getLink( "alternative" ).getAttributeValue( "href" ) );
-            item.setImageNormalUrl( itemEntry.getLink( "image-normal" ).getAttributeValue( "href" ) );
-            item.setImageOriginalUrl( itemEntry.getLink( "image-original" ).getAttributeValue( "href" ) );
-            item.setImageThumbnailUrl( itemEntry.getLink( "image-thumbnail" ).getAttributeValue( "href" ) );
-
-            for ( Element element : itemEntry.getElements() )
-            {
-                if ( element.getQName().getLocalPart().equals( "expirationTime" ) )
-                {
-                    try
-                    {
-                        item.setCloseDate( DateUtils.parseDate( element.getText().replaceAll( ":(\\d\\d)$", "$1" ),
-                                                                new String[] { DATE_FORMAT } ) );
-                    }
-                    catch ( ParseException e )
-                    {
-                        throw new RuntimeException( "Date:" + element.getText(), e );
-                    }
-                }
-
-                else if ( element.getQName().getLocalPart().equals( "price" ) )
-                {
-                    for ( Element priceElement : element.getElements() )
-                    {
-                        if ( priceElement.getQName().getLocalPart().equals( "currentPrice" ) )
-                        {
-                            item.setPriceCurrent( new BigDecimal( priceElement.getText() ) );
-                        }
-
-                        if ( priceElement.getQName().getLocalPart().equals( "startingPrice" ) )
-                        {
-                            item.setPriceStart( new BigDecimal( priceElement.getText() ) );
-                        }
-                    }
-                }
-
-                else if ( element.getQName().getLocalPart().equals( "intention" ) )
-                {
-                    if ( element.getAttributeValue( "type" ).equals( "AUCTION" ) )
-                    {
-                        item.setType( Type.AUCTION );
-                    }
-                    else if ( element.getAttributeValue( "type" ).equals( "BUY_NOW" ) )
-                    {
-                        item.setType( Type.BUY_NOW );
-                    }
-                }
-
-            }
-
-            this.item = item;
+            this.item = toHuutoNetItem( itemEntry );
         }
 
+    }
+
+    private static HuutoNetItem toHuutoNetItem( Entry itemEntry )
+    {
+        HuutoNetItem item = new HuutoNetItem();
+
+        item.setTitle( itemEntry.getTitle() );
+        item.setCategory( itemEntry.getCategories().get( 0 ).getTerm() );
+        item.setDescription( itemEntry.getSummary() );
+        item.setHuutoNetUrl( itemEntry.getLink( "alternative" ).getAttributeValue( "href" ) );
+        item.setImageNormalUrl( itemEntry.getLink( "image-normal" ).getAttributeValue( "href" ) );
+        item.setImageOriginalUrl( itemEntry.getLink( "image-original" ).getAttributeValue( "href" ) );
+        item.setImageThumbnailUrl( itemEntry.getLink( "image-thumbnail" ).getAttributeValue( "href" ) );
+
+        for ( Element element : itemEntry.getElements() )
+        {
+            if ( element.getQName().getLocalPart().equals( "expirationTime" ) )
+            {
+                try
+                {
+                    item.setCloseDate( DateUtils.parseDate( element.getText().replaceAll( ":(\\d\\d)$", "$1" ),
+                                                            new String[] { DATE_FORMAT } ) );
+                }
+                catch ( ParseException e )
+                {
+                    throw new RuntimeException( "Date:" + element.getText(), e );
+                }
+            }
+
+            else if ( element.getQName().getLocalPart().equals( "price" ) )
+            {
+                for ( Element priceElement : element.getElements() )
+                {
+                    if ( priceElement.getQName().getLocalPart().equals( "currentPrice" ) )
+                    {
+                        item.setPriceCurrent( new BigDecimal( priceElement.getText() ) );
+                    }
+
+                    if ( priceElement.getQName().getLocalPart().equals( "startingPrice" ) )
+                    {
+                        item.setPriceStart( new BigDecimal( priceElement.getText() ) );
+                    }
+                }
+            }
+
+            else if ( element.getQName().getLocalPart().equals( "intention" ) )
+            {
+                if ( element.getAttributeValue( "type" ).equals( "AUCTION" ) )
+                {
+                    item.setType( Type.AUCTION );
+                }
+                else if ( element.getAttributeValue( "type" ).equals( "BUY_NOW" ) )
+                {
+                    item.setType( Type.BUY_NOW );
+                }
+            }
+        }
+        return item;
     }
 
 }

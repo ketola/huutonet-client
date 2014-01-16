@@ -16,10 +16,31 @@ import org.apache.abdera.Abdera;
 import org.apache.abdera.protocol.client.AbderaClient;
 import org.apache.abdera.protocol.client.ClientResponse;
 import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class HuutoNetServiceImplTest
 {
+    @Test
+    public void testFetchItemIds()
+    {
+        HuutoNetServiceImpl service = HuutoNetServiceImplWithMockAbderaClient();
+
+        List<String> ids = service.fetchItemIds();
+        Assert.assertEquals( 2, ids.size() );
+        Assert.assertEquals( "291236849", ids.get( 0 ) );
+        Assert.assertEquals( "291247952", ids.get( 1 ) );
+    }
+
+    @Test
+    public void testFetchItem()
+        throws ParseException
+    {
+        HuutoNetServiceImpl service = HuutoNetServiceImplWithMockAbderaClient();
+
+        HuutoNetItem huutoNetItem = service.fetchItem( "291236849" );
+        assertFirstItem( huutoNetItem );
+    }
 
     @Test
     public void testFetchHuutoNetItems()
@@ -32,6 +53,12 @@ public class HuutoNetServiceImplTest
 
         HuutoNetItem item1 = items.get( 0 );
 
+        assertFirstItem( item1 );
+    }
+
+    private void assertFirstItem( HuutoNetItem item1 )
+        throws ParseException
+    {
         assertEquals( "Tyttöjen mekot ja hameet 86-104 cm", item1.getCategory() );
         assertEquals( DateUtils.parseDate( "2013-12-08 12:54:55", new String[] { "yyyy-MM-dd HH:mm:ss" } ),
                       item1.getCloseDate() );
