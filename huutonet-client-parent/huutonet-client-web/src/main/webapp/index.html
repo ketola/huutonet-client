@@ -70,6 +70,24 @@
 		max-height: 180px;
 		height: auto;
 	}
+	
+	.radio-toolbar input[type="radio"] {
+    	display:none;
+	}
+	
+	.radio-toolbar label {
+	    display:inline-block;
+	    background-color:#ddd;
+	    padding:4px 11px;
+	    margin-bottom: 30px;
+	    font-size:16px;
+	    border-radius: 6px;
+	    cursor: pointer;
+	}
+	
+	.radio-toolbar input[type="radio"]:checked + label {
+	    background-color:#bbb;
+	}
 }
 </style>
   </head>
@@ -85,7 +103,20 @@
       </div>
 
       <div class="row marketing" ng-controller="HuutoNetItemsCtrl">
-        <div class="col-sm-6" ng-repeat="e in items" style="text-align: center; ">
+      	
+      	<div class="radio-toolbar">
+      		<div class="col-sm-4 text-center">
+      		 	<input id="all" type="radio" ng-model="itemsFilter" ng-value="filters.ALL" checked="checked"><label for="all">Kaikki</label>
+			</div>
+			<div class="col-sm-4 text-center">
+				<input id="buy_now" type="radio" ng-model="itemsFilter" ng-value="filters.BUY_NOW"><label for="buy_now">Osta heti -kohteet</label>
+			</div>
+			<div class="col-sm-4 text-center">
+				<input id="auction" type="radio" ng-model="itemsFilter" ng-value="filters.AUCTION"><label for="auction">Huutokaupat</label>
+      		</div>
+      	</div>
+      	
+        <div class="col-sm-6" ng-repeat="e in items | filter:itemsFilter" style="text-align: center; ">
           <a target="_blank" href="{{e.huutoNetUrl}}"><img class="auction-img"
 			ng-src="{{e.imageNormalUrl}}"
 			alt=""></a>
