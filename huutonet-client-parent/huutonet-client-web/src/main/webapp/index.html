@@ -44,6 +44,24 @@
 	.container-narrow>hr {
 		margin: 30px 0;
 	}
+	
+	.radio-toolbar input[type="radio"] {
+    	display:none;
+	}
+	
+	.radio-toolbar label {
+	    display:inline-block;
+	    background-color:#ddd;
+	    padding:4px 11px;
+	    margin-bottom: 30px;
+	    font-size:16px;
+	    border-radius: 6px;
+	    cursor: pointer;
+	}
+	
+	.radio-toolbar input[type="radio"]:checked + label {
+	    background-color:#bbb;
+	}
 
 	/* Responsive: Portrait tablets and up */
 	@media screen and (min-width: 768px) {
@@ -71,23 +89,6 @@
 		height: auto;
 	}
 	
-	.radio-toolbar input[type="radio"] {
-    	display:none;
-	}
-	
-	.radio-toolbar label {
-	    display:inline-block;
-	    background-color:#ddd;
-	    padding:4px 11px;
-	    margin-bottom: 30px;
-	    font-size:16px;
-	    border-radius: 6px;
-	    cursor: pointer;
-	}
-	
-	.radio-toolbar input[type="radio"]:checked + label {
-	    background-color:#bbb;
-	}
 }
 </style>
   </head>
