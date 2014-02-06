@@ -26,7 +26,7 @@ public class HuutoNetServiceImplTest
     {
         HuutoNetServiceImpl service = HuutoNetServiceImplWithMockAbderaClient();
 
-        List<String> ids = service.fetchItemIds();
+        List<String> ids = service.fetchItemIds( 1, 50 );
         Assert.assertEquals( 2, ids.size() );
         Assert.assertEquals( "291236849", ids.get( 0 ) );
         Assert.assertEquals( "291247952", ids.get( 1 ) );
@@ -103,7 +103,7 @@ public class HuutoNetServiceImplTest
                     @Override
                     public ClientResponse get( String uri )
                     {
-                        if ( uri.equals( HuutoNetServiceImpl.URL_ITEMS ) )
+                        if ( uri.equals( String.format( HuutoNetServiceImpl.URL_ITEMS, 50, 1 ) ) )
                         {
                             return itemsResponse;
                         }

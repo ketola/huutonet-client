@@ -25,7 +25,7 @@ public class HuutoNetServiceImpl
 {
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
 
-    public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/items?seller=satukirppu&num=50";
+    public static final String URL_ITEMS = "http://api.huuto.net/somt/0.9/items?seller=satukirppu&num=%d&sortBy=closingTime&sortOrder=asc&page=%d";
 
     public static final String URL_ITEM = "http://api.huuto.net/somt/0.9/items/%s";
 
@@ -36,13 +36,13 @@ public class HuutoNetServiceImpl
     }
 
     @Override
-    public List<String> fetchItemIds()
+    public List<String> fetchItemIds( int page, int pageSize )
     {
         List<String> itemIds = new ArrayList<String>();
 
         AbderaClient abderaClient = abderaClient();
 
-        ClientResponse response = abderaClient.get( URL_ITEMS );
+        ClientResponse response = abderaClient.get( String.format( URL_ITEMS, pageSize, page ) );
         Document<Feed> doc = response.getDocument();
         List<Entry> entries = doc.getRoot().getEntries();
 
@@ -73,7 +73,7 @@ public class HuutoNetServiceImpl
 
         AbderaClient abderaClient = abderaClient();
 
-        ClientResponse response = abderaClient.get( URL_ITEMS );
+        ClientResponse response = abderaClient.get( String.format( URL_ITEMS, 50, 1 ) );
         Document<Feed> doc = response.getDocument();
         List<Entry> entries = doc.getRoot().getEntries();
 

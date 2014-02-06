@@ -41,15 +41,17 @@ public class HuutoNetItemsController
         }
     }
 
-    @RequestMapping(value = "/itemids", method = RequestMethod.GET)
+    @RequestMapping(value = "/itemids/{page}", method = RequestMethod.GET)
     @ResponseBody
     public String fetchItemIds( @RequestParam(required = false)
-    String callback )
+    String callback, @RequestParam(required = false, defaultValue = "50")
+    int pageSize, @PathVariable(value = "page")
+    int page )
     {
         ObjectMapper mapper = new ObjectMapper();
         try
         {
-            String json = mapper.writeValueAsString( huutoNetService.fetchItemIds() );
+            String json = mapper.writeValueAsString( huutoNetService.fetchItemIds( page, pageSize ) );
 
             if ( StringUtils.isNotEmpty( callback ) )
             {

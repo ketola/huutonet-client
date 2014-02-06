@@ -8,7 +8,7 @@ public interface HuutoNetService
 {
     List<HuutoNetItem> fetchHuutoNetItems();
 
-    List<String> fetchItemIds();
+    List<String> fetchItemIds( int page, int pageSize );
 
     HuutoNetItem fetchItem( String id );
 }

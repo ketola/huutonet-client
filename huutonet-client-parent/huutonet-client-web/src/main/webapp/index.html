@@ -22,6 +22,7 @@
     
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
+	
 	<script src="js/services.js?v=1"></script>
 	<script src="js/app.js?v=1"></script>
 	<script src="js/controllers.js?v=1"></script>
@@ -117,23 +118,26 @@
       		</div>
       	</div>
       	
-        <div class="col-sm-6" ng-repeat="e in items | filter:itemsFilter" style="text-align: center; ">
+        <div class="col-sm-6" ng-repeat="e in items | filter:itemsFilter" style="text-align: center;">
           <a target="_blank" href="{{e.huutoNetUrl}}"><img class="auction-img"
 			ng-src="{{e.imageNormalUrl}}"
 			alt=""></a>
           <h4><a target="_blank" href="{{e.huutoNetUrl}}">{{e.title}}</a></h4>
           <p ng-switch="e.type">
-          	 Sulkeutuu: {{e.closeDate | date:'d.M.yyyy HH:mm'}}<br/>
+          	 
              <span ng-switch-when="BUY_NOW">Osta heti: </span>
-             <span ng-switch-default>Hinta nyt: </span> 
+             <span ng-switch-default>
+             Sulkeutuu: {{e.closeDate | date:'d.M.yyyy HH:mm'}}<br/>
+             Hinta nyt: 
+             </span> 
              {{e.priceCurrent | number: 2}} €
           </p>
         </div>
       </div>
-
+    </div>
      
 
-    </div> <!-- /container -->
+   <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
