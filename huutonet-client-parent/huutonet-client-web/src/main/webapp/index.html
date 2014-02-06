@@ -123,9 +123,12 @@
 			alt=""></a>
           <h4><a target="_blank" href="{{e.huutoNetUrl}}">{{e.title}}</a></h4>
           <p ng-switch="e.type">
-          	 Sulkeutuu: {{e.closeDate | date:'d.M.yyyy HH:mm'}}<br/>
+          	 
              <span ng-switch-when="BUY_NOW">Osta heti: </span>
-             <span ng-switch-default>Hinta nyt: </span> 
+             <span ng-switch-default>
+             Sulkeutuu: {{e.closeDate | date:'d.M.yyyy HH:mm'}}<br/>
+             Hinta nyt: 
+             </span> 
              {{e.priceCurrent | number: 2}} €
           </p>
         </div>
